@@ -294,6 +294,8 @@ server {
 	
 	{{ if (exists (printf "/etc/nginx/vhost.d/%s_locations" $host)) }}
 	include {{ printf "/etc/nginx/vhost.d/%s_locations" $host}};
+	{{ else if (exists "/etc/nginx/vhost.d/default_locations") }}
+	include /etc/nginx/vhost.d/default_locations;
 	{{ else }}
 	location / {
 		{{ if eq $proto "uwsgi" }}
