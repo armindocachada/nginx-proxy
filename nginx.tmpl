@@ -12,12 +12,13 @@
 			server {{ .Network.IP }}:{{ .Address.Port }};
 		{{ end }}
 	{{ else if .Network }}
-		# {{ .Container.Name }}
-		{{ if .Network.IP }}
-			server {{ .Network.IP }} down;
-		{{ else }}
-			server 127.0.0.1 down;
-		{{ end }}
+		# commented out as it seems to only cause trouble 
+		#{{ .Container.Name }}
+		#{{ if .Network.IP }}
+		#	server {{ .Network.IP }} down;
+		#{{ else }}
+		#	server 127.0.0.1 down;
+		#{{ end }}
 	{{ end }}
 
 {{ end }}
