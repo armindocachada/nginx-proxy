@@ -12,13 +12,12 @@
 			server {{ .Network.IP }}:{{ .Address.Port }};
 		{{ end }}
 	{{ else if .Network }}
-		# commented out as it seems to only cause trouble 
-		#{{ .Container.Name }}
-		#{{ if .Network.IP }}
-		#	server {{ .Network.IP }} down;
-		#{{ else }}
-		#	server 127.0.0.1 down;
-		#{{ end }}
+		{{ .Container.Name }}
+		{{ if .Network.IP }}
+			server {{ .Network.IP }} down;
+		{{ else }}
+			server 127.0.0.1 down;
+		{{ end }}
 	{{ end }}
 
 {{ end }}
@@ -193,7 +192,8 @@ upstream {{ $upstream_name }} {
 				{{ end }}
 			{{ else }}
 				# Cannot connect to network of this container
-				server 127.0.0.1 down;
+			# commentw out as it causes issues as somehow the upstream gets disabled as it thinks there is more than one
+			#server 127.0.0.1 down;
 			{{ end }}
 		{{ end }}
 	{{ end }}
